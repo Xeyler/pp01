@@ -17,7 +17,7 @@ public class TimSortTest {
 
     private ArraySort fixture;
 
-    public TreeSortTest() {
+    public TimSortTest() {
     }
 
     @BeforeClass
