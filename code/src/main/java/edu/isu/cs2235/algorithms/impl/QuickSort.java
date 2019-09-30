@@ -12,6 +12,8 @@ public class QuickSort implements ArraySort {
      */
     @Override
     public <E extends Comparable> void sort(E[] array) {
+        if(array == null)
+            throw new IllegalArgumentException("Array must not be null!");
         quickSort(array, 0, array.length - 1);
     }
 
@@ -37,7 +39,7 @@ public class QuickSort implements ArraySort {
                 if(array[i].compareTo(pivot) <= 0) {
                     i++;
                 }
-                if(array[j].compareTo(pivot) <= 0) {
+                if(array[j].compareTo(pivot) > 0) {
                     j--;
                 }
             }
@@ -51,15 +53,5 @@ public class QuickSort implements ArraySort {
         E temp = array[first];
         array[first] = array[second];
         array[second] = temp;
-    }
-
-    /**
-     * Constructs an exact copy of the input array
-     * @param otherArray The array to copy
-     * @param <E> The type of parameter of the data in the array
-     * @return A copy of the provided array
-     */
-    public <E> E[] copyArray(E[] otherArray) {
-        return Arrays.copyOf(otherArray, otherArray.length);
     }
 }

@@ -12,8 +12,10 @@ public class MergeSort implements ArraySort {
      */
     @Override
     public <E extends Comparable> void sort(E[] array) {
+        if(array == null)
+            throw new IllegalArgumentException("Array must not be null!");
         E[] copy = copyArray(array);
-        mergeSort(copy, array, 0, array.length);
+        mergeSort(copy, array, 0, array.length - 1);
     }
 
     public <E extends Comparable> void mergeSort(E[] array, E[] result, int start, int end) {
@@ -31,7 +33,7 @@ public class MergeSort implements ArraySort {
         mergeSort(result, array, mid + 1, end);
         int i = start;
         int j = mid + 1;
-        for(int index = 0; index < end; index++) {
+        for(int index = start; index <= end; index++) {
             if(j > end || (i <= mid && array[i].compareTo(array[j]) < 0)) {
                 result[index] = array[i];
                 i++;

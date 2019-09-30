@@ -12,16 +12,19 @@ public class InsertionSort implements ArraySort {
      */
     @Override
     public <E extends Comparable> void sort(E[] array) {
-
+        if(array == null)
+            throw new IllegalArgumentException("Array must not be null!");
+        for(int i = 1; i < array.length; i++) {
+            insert(array, i, array[i]);
+        }
     }
 
-    /**
-     * Constructs an exact copy of the input array
-     * @param otherArray The array to copy
-     * @param <E> The type of parameter of the data in the array
-     * @return A copy of the provided array
-     */
-    public <E> E[] copyArray(E[] otherArray) {
-        return Arrays.copyOf(otherArray, otherArray.length);
+    private <E extends Comparable> void insert(E[] array, int pos, E value) {
+        int i = pos - 1;
+        while(i >= 0 && array[i].compareTo(value) > 0) {
+            array[i + 1] = array[i];
+            i--;
+        }
+        array[i + 1] = value;
     }
 }

@@ -12,16 +12,22 @@ public class SelectionSort implements ArraySort {
      */
     @Override
     public <E extends Comparable> void sort(E[] array) {
-
+        if(array == null)
+            throw new IllegalArgumentException("Array must not be null!");
+        for(int firstUnsorted = 0; firstUnsorted <= array.length - 1; firstUnsorted++) {
+            int min = firstUnsorted;
+            int i;
+            for(i = min; i <= array.length - 1; i++) {
+                if(array[i].compareTo(array[min]) < 0)
+                    min = i;
+            }
+            swap(array, firstUnsorted, min);
+        }
     }
 
-    /**
-     * Constructs an exact copy of the input array
-     * @param otherArray The array to copy
-     * @param <E> The type of parameter of the data in the array
-     * @return A copy of the provided array
-     */
-    public <E> E[] copyArray(E[] otherArray) {
-        return Arrays.copyOf(otherArray, otherArray.length);
+    private <E> void swap(E[] array, int first, int second) {
+        E temp = array[first];
+        array[first] = array[second];
+        array[second] = temp;
     }
 }

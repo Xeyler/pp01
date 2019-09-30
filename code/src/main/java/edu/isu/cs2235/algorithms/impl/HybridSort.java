@@ -12,16 +12,14 @@ public class HybridSort implements ArraySort {
      */
     @Override
     public <E extends Comparable> void sort(E[] array) {
-
+        if(array == null)
+            throw new IllegalArgumentException("Array must not be null!");
+        hybridSort(array, 0, array.length - 1);
     }
 
-    /**
-     * Constructs an exact copy of the input array
-     * @param otherArray The array to copy
-     * @param <E> The type of parameter of the data in the array
-     * @return A copy of the provided array
-     */
-    public <E> E[] copyArray(E[] otherArray) {
-        return Arrays.copyOf(otherArray, otherArray.length);
+    private <E extends Comparable> void hybridSort(E[] array, int left, int right) {
+        if(left < right) {
+            int pi = partition(array, left, right);
+        }
     }
 }
