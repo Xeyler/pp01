@@ -11,7 +11,14 @@ public class Driver {
         ArraySort[] sortingAlgorithms = {new HybridSort(), new InsertionSort(), new MergeSort(), new QuickSort(), new SelectionSort(), new TimSort()};
         Random rng = new Random();
 
+        System.out.print("arraySize");
+        for(ArraySort sortingAlgorithm : sortingAlgorithms) {
+            System.out.print(',' + sortingAlgorithm.getClass().getSimpleName());
+        }
+        System.out.println();
+
         for(int i = 10000; i <= 100000; i += 10000) {
+            System.out.print(i);
             long averageTime = 0;
             for(ArraySort sortingAlgorithm : sortingAlgorithms) {
                 for (int attempt = 0; attempt < 50; attempt++) {
@@ -24,8 +31,10 @@ public class Driver {
                     averageTime += System.nanoTime() - startTime;
                 }
                 averageTime /= 50;
-                System.out.println(averageTime);
+                System.out.print(',');
+                System.out.print(averageTime);
             }
+            System.out.println();
         }
     }
 }
