@@ -17,7 +17,7 @@ public class QuickSort implements ArraySort {
         quickSort(array, 0, array.length - 1);
     }
 
-    private <E extends Comparable> void quickSort(E[] array, int left, int right) {
+    public <E extends Comparable> void quickSort(E[] array, int left, int right) {
         if(left < right) {
             int pi = partition(array, left, right);
             quickSort(array, left, pi - 1);
@@ -25,7 +25,7 @@ public class QuickSort implements ArraySort {
         }
     }
 
-    private <E extends Comparable> int partition(E[] array, int left, int right) {
+    public <E extends Comparable> int partition(E[] array, int left, int right) {
         E pivot = array[left];
 
         int i = left + 1;
