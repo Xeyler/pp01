@@ -1,15 +1,31 @@
 package edu.isu.cs2235;
 
+import edu.isu.cs2235.algorithms.ArraySort;
 import edu.isu.cs2235.algorithms.impl.*;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Driver {
     public static void main(String[] args) {
-        HybridSort sort = new HybridSort();
-        Integer[] array = {5, 4, 6, 2, 1, 4, 2, 9, 8, 7, 1, 0, 4, 2, 7, 9};
-        sort.sort(array);
+        ArraySort[] sortingAlgorithms = {new HybridSort(), new InsertionSort(), new MergeSort(), new QuickSort(), new SelectionSort(), new TimSort()};
+        Random rng = new Random();
 
-        System.out.println(Arrays.toString(array));
+        for(int i = 10000; i <= 100000; i += 10000) {
+            long averageTime = 0;
+            for(ArraySort sortingAlgorithm : sortingAlgorithms) {
+                for (int attempt = 0; attempt < 50; attempt++) {
+                    Integer[] array = new Integer[i];
+                    for (int j = 0; j < array.length; j++) {
+                        array[j] = rng.nextInt(100000);
+                    }
+                    long startTime = System.nanoTime();
+                    sortingAlgorithm.sort(array);
+                    averageTime += System.nanoTime() - startTime;
+                }
+                averageTime /= 50;
+                System.out.println(averageTime);
+            }
+        }
     }
 }
